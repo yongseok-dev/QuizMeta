@@ -24,5 +24,5 @@
 4. Frontend 폴더에서 npm install 명령어로 필요한 모듈을 설치한 후, npm start 명령어로 React 애플리케이션을 실행합니다.
 
 ## 참고 문서
-- 프로젝트 기능 명세서: [링크 추가예정]
-- 프로젝트 API 문서: [링크 추가예정]
+- 프로젝트 기능 및 API 명세: [위키](https://github.com/yongseok-dev/QuizMeta/wiki/Feature-API)
+- 프로젝트 Database 설계: [위키](https://github.com/yongseok-dev/QuizMeta/wiki/Database)
