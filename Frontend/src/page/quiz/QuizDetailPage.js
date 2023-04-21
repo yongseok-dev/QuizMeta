@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { Card, Button, Form } from "react-bootstrap";
+import { Container, Card, Button, Form, Col, Row } from "react-bootstrap";
+import PageTitle from "../../component/PageTitle";
 
 const QuizDetailPage = () => {
   const [selectedOption, setSelectedOption] = useState(null);
@@ -26,30 +27,41 @@ const QuizDetailPage = () => {
   };
 
   return (
-    <Card>
-      <Card.Body>
-        <Card.Title>{quizData.title}</Card.Title>
-        <Card.Subtitle className="mb-2 text-muted">
-          {quizData.type}
-        </Card.Subtitle>
-        <Card.Text>{quizData.content}</Card.Text>
-        <Form onSubmit={handleSubmit}>
-          {quizData.options.map((option, index) => (
-            <Form.Check
-              key={index}
-              type="radio"
-              name="option"
-              label={option}
-              value={option}
-              onChange={handleOptionChange}
-            />
-          ))}
-          <Button variant="primary" type="submit" disabled={!selectedOption}>
-            제출
-          </Button>
-        </Form>
-      </Card.Body>
-    </Card>
+    <Container>
+      <PageTitle>퀴즈 상세보기</PageTitle>
+      <Row>
+        <Col>
+          <Card>
+            <Card.Body>
+              <Card.Title>{quizData.title}</Card.Title>
+              <Card.Subtitle className="mb-2 text-muted">
+                {quizData.type}
+              </Card.Subtitle>
+              <Card.Text>{quizData.content}</Card.Text>
+              <Form onSubmit={handleSubmit}>
+                {quizData.options.map((option, index) => (
+                  <Form.Check
+                    key={index}
+                    type="radio"
+                    name="option"
+                    label={option}
+                    value={option}
+                    onChange={handleOptionChange}
+                  />
+                ))}
+                <Button
+                  variant="primary"
+                  type="submit"
+                  disabled={!selectedOption}
+                >
+                  제출
+                </Button>
+              </Form>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

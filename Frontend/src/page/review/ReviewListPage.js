@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import PageTitle from "../../component/PageTitle";
 
 const ReviewListPage = () => {
   const [currentQuiz, setCurrentQuiz] = useState(0);
@@ -63,6 +64,7 @@ const ReviewListPage = () => {
 
   return (
     <Container>
+      <PageTitle>리뷰 리스트</PageTitle>
       <Row>
         <Col>
           <Form.Group controlId="categorySelect">

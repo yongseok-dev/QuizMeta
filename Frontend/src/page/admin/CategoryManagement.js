@@ -1,5 +1,14 @@
 import React from "react";
-import { Table, Button, Modal, Form } from "react-bootstrap";
+import {
+  Container,
+  Table,
+  Button,
+  Modal,
+  Form,
+  Row,
+  Col,
+} from "react-bootstrap";
+import PageTitle from "../../component/PageTitle";
 
 const categoryData = [
   { id: 1, name: "Programming" },
@@ -56,67 +65,71 @@ class CategoryManagement extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>Category List</h1>
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Category Name</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {this.state.categories.map((category) => (
-              <tr key={category.id}>
-                <td>{category.id}</td>
-                <td>{category.name}</td>
-                <td>
-                  <Button
-                    variant="warning"
-                    onClick={() => this.handleEdit(category.id)}
-                  >
-                    Edit
+      <Container>
+        <PageTitle>카테고리 관리</PageTitle>
+        <Row>
+          <Col>
+            <Table striped bordered hover>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Category Name</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {this.state.categories.map((category) => (
+                  <tr key={category.id}>
+                    <td>{category.id}</td>
+                    <td>{category.name}</td>
+                    <td>
+                      <Button
+                        variant="warning"
+                        onClick={() => this.handleEdit(category.id)}
+                      >
+                        Edit
+                      </Button>{" "}
+                      <Button
+                        variant="danger"
+                        onClick={() => this.handleDelete(category.id)}
+                      >
+                        Delete
+                      </Button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+            <Button variant="primary" onClick={this.handleAddCategory}>
+              Add Category
+            </Button>
+            <Modal show={this.state.showModal} onHide={this.handleClose}>
+              <Modal.Header closeButton>
+                <Modal.Title>Add Category</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <Form onSubmit={this.handleSubmit}>
+                  <Form.Group controlId="formCategoryName">
+                    <Form.Label>Category Name</Form.Label>
+                    <Form.Control
+                      type="text"
+                      placeholder="Enter category name"
+                      value={this.state.categoryName}
+                      onChange={this.handleChange}
+                    />
+                  </Form.Group>
+                  <Button variant="primary" type="submit">
+                    Save
                   </Button>{" "}
-                  <Button
-                    variant="danger"
-                    onClick={() => this.handleDelete(category.id)}
-                  >
-                    Delete
+                  <Button variant="secondary" onClick={this.handleClose}>
+                    Cancel
                   </Button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
-        <Button variant="primary" onClick={this.handleAddCategory}>
-          Add Category
-        </Button>
-        <Modal show={this.state.showModal} onHide={this.handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>Add Category</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <Form onSubmit={this.handleSubmit}>
-              <Form.Group controlId="formCategoryName">
-                <Form.Label>Category Name</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Enter category name"
-                  value={this.state.categoryName}
-                  onChange={this.handleChange}
-                />
-              </Form.Group>
-              <Button variant="primary" type="submit">
-                Save
-              </Button>{" "}
-              <Button variant="secondary" onClick={this.handleClose}>
-                Cancel
-              </Button>
-            </Form>
-          </Modal.Body>
-        </Modal>
-      </div>
+                </Form>
+              </Modal.Body>
+            </Modal>
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }

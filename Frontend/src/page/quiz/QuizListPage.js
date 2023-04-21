@@ -8,6 +8,7 @@ import {
   Button,
   Table,
 } from "react-bootstrap";
+import PageTitle from "../../component/PageTitle";
 
 const QuizListPage = () => {
   // Define state variables for category selection and search query
@@ -62,11 +63,7 @@ const QuizListPage = () => {
 
   return (
     <Container>
-      <Row>
-        <Col>
-          <h1>Quiz List</h1>
-        </Col>
-      </Row>
+      <PageTitle>퀴즈 리스트</PageTitle>
       <Row>
         <Col md={3}>
           <Form>
